@@ -1,0 +1,61 @@
+.body2 {
+  background-image: url("../../../assets/barber-shop2.png");
+  font-family: 'Open Sans', sans-serif;
+  height: 1000px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login {
+  width: 1000px;
+  margin: 16px auto;
+}
+
+.login-container {
+  background: #ebebeb;
+  padding: 12px;
+}
+
+.containers {
+  margin-right: 200px;
+  margin-left: 150px;
+
+}
+
+.containers1 {
+  width: 50px;
+}
+
+.register {
+  width: 300px
+}
+
+.main-section {
+  border: 1px solid #007bff;
+  background: #fff;
+}
+
+.profile-header {
+  background: #007bff;
+  height: 150px;
+}
+
+.border {
+  border-color: black;
+}
+
+.user-detail {
+  margin: -50px 0 30px 0;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+}
+
+.user-details h5 {
+  margin: 15px 0 5px 0;
+}

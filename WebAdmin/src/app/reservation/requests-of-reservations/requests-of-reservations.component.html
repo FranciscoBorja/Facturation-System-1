@@ -1,0 +1,86 @@
+<body class="body2">
+<div class="login " *ngFor=" let notification of notifications  " align="center">
+  <div class="border">
+    <p-card header="Solicitud : {{notification.first_name}} {{notification.last_name}} " subheader=""
+            [style]="{width: '500px',height:'410px'}"
+            styleClass="ui-card-shadow ">
+      <p-header>
+      </p-header>
+      <br><br>
+      <div align="center">
+        <div aling="center">
+          <div class="ui-grid-row" align="center">
+            <div class="ui-grid-col-2">
+              ID:
+            </div>
+            <div align="center">
+              {{notification.id}}
+            </div>
+          </div>
+          <div class="ui-grid-row" align="center">
+            <div class="ui-grid-col-2">
+              Creation Date:
+            </div>
+            <div align="center">
+              {{getFormatDate(notification.created_at)}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              Reservation Date:
+            </div>
+            <div align="center">
+              {{getFormatDate(notification.reservation_date)}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              Reservation Hour:
+            </div>
+            <div align="center">
+              {{notification.reservation_hour}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              State:
+            </div>
+            <div align="center">
+              {{notification.state}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-6">
+            <button pButton type="submit" label="Aprobar" (click)="changeAprob(notification.id)"
+            ></button>
+          </div>
+          <div class="ui-grid-col-6">
+            <button pButton type="submit" label="Rechazar" (click)="changeRechaz(notification.id)"
+            ></button>
+          </div>
+        </div>
+      </div>
+      <p-footer>
+        ______________________________________________________
+      </p-footer>
+    </p-card>
+
+  </div>
+  <br><br><br>
+</div>
+
+

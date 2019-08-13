@@ -1,0 +1,94 @@
+<body class="body2">
+<div class="login " *ngFor=" let reservation of reservations  " align="center">
+  <div class="border">
+    <p-card header="Reservation : {{reservation.name}}" subheader="" [style]="{width: '500px',height:'500px'}"
+            styleClass="ui-card-shadow ">
+      <p-header>
+      </p-header>
+      <br><br>
+      <div align="center">
+        <div aling="center">
+          <div class="ui-grid-row" align="center">
+            <div class="ui-grid-col-2">
+              Creation Date:
+            </div>
+            <div align="center">
+              {{getFormatDate(reservation.created_at)}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              Reservation Date:
+            </div>
+            <div align="center">
+              {{getFormatDate(reservation.reservation_date)}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              Reservation Hour:
+            </div>
+            <div align="center">
+              {{reservation.reservation_hour}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">Hairdresser:
+            </div>
+            <div align="center">
+              {{reservation.hairdressers}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              State:
+            </div>
+            <div align="center">
+              {{reservation.state}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              State:
+            </div>
+            <div align="center">
+              {{reservation.duration}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="ui-grid-col-6">
+          <button pButton type="submit" label="Cancell reservation" (click)="onRegisterNotification()"
+          ></button>
+        </div>
+      </div>
+      <p-footer>
+        ______________________________________________________
+      </p-footer>
+    </p-card>
+
+  </div>
+  <br><br><br>
+</div>
+
+

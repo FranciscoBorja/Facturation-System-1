@@ -1,0 +1,38 @@
+.body2 {
+  background-image: url("../../assets/barber-shop2.png");
+  font-family: 'Open Sans', sans-serif;
+  height: 1000px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.messeges {
+  margin-left: 20px;
+}
+
+.login {
+  width: 600px;
+  margin: 16px auto;
+}
+
+.login-container {
+  background: #ebebeb;
+  padding: 12px;
+}
+
+.containers {
+  margin-right: 200px;
+  margin-left: 150px;
+
+}
+
+.containers1 {
+  width: 50px;
+}
+
+.containers2 {
+  margin-right: 200px;
+}

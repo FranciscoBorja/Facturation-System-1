@@ -1,0 +1,66 @@
+<p-progressBar *ngIf="loading" mode="indeterminate" [style]="{'height': '6px'}"
+></p-progressBar>
+<br>
+<p-toast [style]="{marginTop: '80px'}" (onClose)="close()"></p-toast>
+<body class="body2">
+<div class="login">
+  <form [formGroup]="loginForm" *ngIf="!validate" class="login-container">
+    <p-panel class="ng-tns-c4-15 ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all ng-star-inserted "
+             header="Login Account">
+      <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-2">
+            Email*:
+          </div>
+          <div class="ui-grid-col-6">
+            <input pInputText
+                   class="ng-untouched ng-pristine ng-invalid ui-inputtext ui-corner-all ui-state-default ui-widget"
+                   type="text" formControlName="email" [(ngModel)]="user.email" placeholder="Required"/>
+          </div>
+          <div>
+            <p-message severity="error"
+                       [text]="loginForm.controls['email'].errors['required'] ? 'Email is required' : loginForm.controls['email'].errors['pattern'] ? 'Email invalid' : ''"
+                       *ngIf="!loginForm.controls['email'].valid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"></p-message>
+            <p-message severity="success"
+                       *ngIf="loginForm.controls['email'].valid && loginForm.controls['email'].dirty"></p-message>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="ui-grid-row ">
+          <div class="ui-grid-col-2 ">
+            Password*:
+          </div>
+          <div class="ui-grid-col-6">
+            <input pInputText type="password"
+                   class="ng-untouched ng-pristine ng-invalid ui-inputtext ui-corner-all ui-state-default ui-widget"
+                   name="password" id="password" formControlName="password" [(ngModel)]="user.password"
+                   placeholder="Required - Min(6)"/>
+          </div>
+          <div>
+            <p-message severity="error"
+                       [text]="loginForm.controls['password'].errors['required'] ? 'Password is required' : loginForm.controls['password'].errors['minlength'] ? 'Must be longer than 6 characters' : ''"
+                       *ngIf="!loginForm.controls['password'].valid&&loginForm.controls['password'].dirty"></p-message>
+            <p-message severity="success"
+                       *ngIf="loginForm.controls['password'].valid && loginForm.controls['password'].dirty"></p-message>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-2"></div>
+          <div class="ui-grid-col-6">
+            <button pButton type="submit" (click)="onLogin()" label="Login" [disabled]="!loginForm.valid"></button>
+          </div>
+          <div class="ui-grid-col-4"></div>
+        </div>
+      </div>
+    </p-panel>
+  </form>
+
+</div>
+
+</body>
+
+
+

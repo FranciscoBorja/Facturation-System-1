@@ -1,0 +1,19 @@
+<div class="login " align="right" *ngIf="!LogIn || null">
+  <div>
+    <img class="img" align="left" src="../../assets/barber-shop3.jpg">
+    <p-megaMenu class="ui-megamenu" [model]="items" autoZIndex="true">
+      <button pButton type="button" label="Log in" class="search1 button" routerLink="login"></button>
+    </p-megaMenu>
+  </div>
+
+</div>
+<div class="login " align="right" *ngIf="LogIn" autoZIndex="true">
+  <div>
+    <img class="img" align="left" src="../../assets/barber-shop3.jpg">
+    <p-megaMenu [model]="itemsLogout" class="ui-megamenu" autoZIndex="true">
+      <button pButton type="button" label="Log Out" icon="fa fa-sign-out" (click)="logOut()" class="search2 button"
+              routerLink="home"></button>
+    </p-megaMenu>
+  </div>
+
+</div>

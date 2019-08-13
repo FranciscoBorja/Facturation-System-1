@@ -1,0 +1,31 @@
+.search {
+  margin-right: 20px;
+}
+
+.search1 {
+  margin-left: 5px;
+  margin-right: 20px;
+}
+
+.search2 {
+  margin-right: 5px;
+}
+
+.img {
+  height: 80px;
+  width: 125px;
+}
+
+.button {
+  color: black;
+  background-color: white;
+  border-color: white;
+  border-radius: 20px;
+}
+
+.button-dirty {
+  color: white;
+  background-color: black;
+  border-radius: 20px;
+}
+

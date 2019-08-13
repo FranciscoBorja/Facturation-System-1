@@ -1,0 +1,29 @@
+<div *ngFor="let service of services">
+
+
+  <div class="ui-fluid">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2  ">
+        <br>
+        <br>
+        <br>
+        <div class="ui-fluid" align="center" *ngIf="service.image !== ''">
+          <img src="{{getImage(service.image,service.imageType)}}" class="sizeImage">
+        </div>
+      </div>
+      <div class="ui-fluid login">
+        <div class="ui-grid-col-6 ">
+          <br><br><br>
+          <div>
+            <label class="fontTextTittle ">{{service.name}}</label>
+          </div>
+          <br><br>
+          <div class="login">
+            <label class="fontText ">{{service.description}}</label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

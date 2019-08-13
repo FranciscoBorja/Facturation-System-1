@@ -1,0 +1,90 @@
+<body class="body2" *ngFor="let user of users">
+<div class="login " align="center">
+  <div class="ui-fluid">
+    <p-card header="PROFILE DATA" subheader="" [style]="{width: '500px',height:'700px'}" styleClass="ui-card-shadow">
+      <p-header>
+        <img src="Card" src="../../assets/check-user.png" class="rounded-circle img-thumbnail" alt="profile">
+      </p-header>
+      <br><br>
+      <div align="center">
+        <div aling="center">
+          <div class="ui-grid-row" align="center">
+            <div class="ui-grid-col-2">
+              First Name:
+            </div>
+            <div class="ui-grid-col-6">
+              {{user.first_name}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              Last Name:
+            </div>
+            <div class="ui-grid-col-6">
+              {{user.last_name}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              Birth Date:
+            </div>
+            <div class="ui-grid-col-6">
+              {{user.birth_date}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">Email:
+            </div>
+            <div class="ui-grid-col-6">
+              {{user.email}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              Role:
+            </div>
+            <div class="ui-grid-col-6">
+              Operator Client
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row " align="center">
+            <div class="ui-grid-col-2">
+              Nick Name:
+            </div>
+            <div class="ui-grid-col-6">
+              {{user.nick_name}}
+            </div>
+          </div>
+        </div>
+        <br><br>
+      </div>
+
+      <p-footer>
+        <button pButton type="button" (click)="update(user.id)" label="Edit User" icon="pi pi-check"
+                style="margin-right: .25em"></button>
+      </p-footer>
+    </p-card>
+
+  </div>
+</div>
+

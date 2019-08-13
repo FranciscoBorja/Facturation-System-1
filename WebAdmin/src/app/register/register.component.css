@@ -1,0 +1,23 @@
+.login {
+  width: 1000px;
+  margin: 16px auto;
+}
+
+.login-container {
+  background: #ebebeb;
+  padding: 12px;
+}
+
+.containers {
+  margin-right: 200px;
+  margin-left: 150px;
+
+}
+
+.containers1 {
+  width: 50px;
+}
+
+.register {
+  width: 300px
+}
