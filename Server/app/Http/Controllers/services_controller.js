@@ -8,20 +8,9 @@ let db = require('knex')(config['development']);
 
 
 //CRUD SERVICES
-let registerServices = (req, res) => {
+let registerTypeProducts = (req, res) => {
     let {name, description} = req.body.params;
-    db('corporations.services').insert({name, description, image: image.buffer, imageType}).returning('id')
-        .then(result => {
-            return res.status(200).json({
-                ok: true,
-                action: 'Insert',
-                id: result
-            })
-        });
-};
-let registerServicesImage = (req, res) => {
-    let {name, description} = req.body.params;
-    db('corporations.services').insert({name, description}).returning('id')
+    db('corporations.type_products').insert({name, description}).returning('id')
         .then(result => {
             return res.status(200).json({
                 ok: true,
@@ -31,9 +20,10 @@ let registerServicesImage = (req, res) => {
         });
 };
 
-let registerSubServices = (req, res) => {
-    let {name, duration, price, service_id} = req.body.params;
-    db('corporations.sub_services').insert({name, duration, price, service_id}).returning('id')
+
+let registerProducts = (req, res) => {
+    let {name, duration, price_sell, price_buy,type_products_id} = req.body.params;
+    db('corporations.products').insert({name, duration, price_sell, price_buy,type_products_id}).returning('id')
         .then(result => {
             return res.status(200).json({
                 ok: true,
@@ -42,11 +32,11 @@ let registerSubServices = (req, res) => {
             })
         });
 };
-let UpdateSubServices = (req, res) => {
-    let {name, duration, price, service_id, id} = req.body.params;
+let updateProducts = (req, res) => {
+    let {name, duration, price_sell, price_buy,type_products_id,id} = req.body.params;
 
 
-    db('corporations.sub_services').update({name, duration, price, service_id}).where('id', '=', id)
+    db('corporations.products').update({name, duration, price_sell, price_buy,type_products_id}).where('id', '=', id)
         .then(result => {
             return res.status(200).json({
                 ok: true,
@@ -56,8 +46,8 @@ let UpdateSubServices = (req, res) => {
         });
 };
 
-const getServices = (req, res) => {
-    db('corporations.services').select("*")
+const getTypeProducts = (req, res) => {
+    db('corporations.type_products').select("*")
         .then(result => {
             return res.status(200).json({
                 ok: true,
@@ -67,9 +57,9 @@ const getServices = (req, res) => {
         })
 };
 
-const getSubServices = (req, res) => {
+const getProductsbyId = (req, res) => {
     let id = req.body.id;
-    db('corporations.sub_services').select('*').where('service_id', "=", id)
+    db('corporations.products').select('*').where('service_id', "=", id)
         .then(result => {
             return res.status(200).json({
                 ok: true,
@@ -86,7 +76,7 @@ const getSubServices = (req, res) => {
             }
         )
 };
-const getAllSubServices = (req, res) => {
+const getAllProducts = (req, res) => {
     let id = req.body.id;
     db('corporations.sub_services').select('*')
         .then(result => {
@@ -106,47 +96,54 @@ const getAllSubServices = (req, res) => {
         )
 };
 
-let deleteServices = (req, res) => {
-    let id = req.body.id;
-    db('corporations.services').where('id', id).del().then(result => {
+let registerProductsInWineries = (req,res) => {
+let {products_id} = req.body.params
+    db('corporations.productsXwineries').insert({products_id,
+        wineries_id:1,
+        quantityOfProducts:0}).then(result => {
         return res.status(200).json({
             ok: true,
-            action: 'Delete',
-            id: result
+            action: 'GET',
+            data: result
         })
-    });
-};
-let updateServices = (req, res) => {
-    let name = req.body.name;
-    let description = req.body.description;
-    let price = req.body.price;
-    //let image = req.body.image;
-    let id = req.body.id || false;
-    if (id) {
-        db('corporations.services')
-            .where('id', '=', id)
-            .update(name, description, price).then(function (result) {
-            return res.status(200).json({
-                ok: true,
-                action: 'Modify',
-                id: result
-            })
-        }).catch(function (err) {
-            return res.send(err)
-        });
-    }
-};
+    })
+        .catch(err => {
+                return res.status(500).json({
+                    ok: false,
+                    action: 'GET',
+                    message: err
+                })
+            }
+        )
+}
+let updateQuantity = (req,res)=>{
+    let {quantityOfProducts} = req.body.params
+    db('corporations.productsXwineries').update({quantityOfProducts}).then(result => {
+        return res.status(200).json({
+            ok: true,
+            action: 'GET',
+            data: result
+        })
+    })
+        .catch(err => {
+                return res.status(500).json({
+                    ok: false,
+                    action: 'GET',
+                    message: err
+                })
+            }
+        )
+}
 
 module.exports = {
 
     //CRUD SERVICES
-    registerServices,
-    getServices,
-    getSubServices,
-    updateServices,
-    deleteServices,
-    getAllSubServices,
-    registerSubServices,
-    registerServicesImage,
-    UpdateSubServices
+    registerTypeProducts,
+    getTypeProducts,
+    getProductsbyId,
+    getAllProducts,
+    registerProducts,
+    updateProducts,
+    registerProductsInWineries,
+    updateQuantity
 };

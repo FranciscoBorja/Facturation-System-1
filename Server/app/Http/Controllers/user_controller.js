@@ -4,28 +4,8 @@ const config = require('../../../knexfile');
 const jwt = require('jsonwebtoken');
 const db = require('knex')(config['development']);
 
-//CRUD USERS 
-// let read = (req, res) => {
-//     let campos = req.query.campos || '*',
-//         tabla = req.query.table || 'users.client';
-//     db.select(campos).from(table)
-//         .then(response => {
-//             return res.status(200).json({
-//                 ok: true,
-//                 data: response,
-//                 message: `Found: ${response.length} records in the query`
-//             })
-//         }).catch(error => {
-//         console.log(error);
-//         return res.status(500).json({
-//             ok: false,
-//             data: null,
-//             message: `Server Error: ${error}`
-//         })
-//     })
-// };
-const getEmployee = (req, res) => {
-    db('persons.users').select('*').where('role_id', "=", 2)
+const getProviders = (req, res) => {
+    db('persons.users').select('*').where('typeUser_id', "=", 4)
         .then(result => {
             return res.status(200).json({
                 ok: true,
@@ -42,7 +22,24 @@ const getEmployee = (req, res) => {
             }
         )
 };
-
+const getClients = (req, res) => {
+    db('persons.users').select('*').where('typeUser_id', "=", 1)
+        .then(result => {
+            return res.status(200).json({
+                ok: true,
+                action: 'GET',
+                data: result
+            })
+        })
+        .catch(err => {
+                return res.status(500).json({
+                    ok: false,
+                    action: 'GET',
+                    message: err
+                })
+            }
+        )
+};
 const getAllUsers = (req, res) => {
     db('persons.users').select('*')
         .then(result => {
@@ -61,22 +58,20 @@ const getAllUsers = (req, res) => {
             }
         )
 };
-
 let registerUserAdmin = (req, res) => {
-    let {first_name, last_name, birth_date, gender_id, nick_name, email, password} = req.body.params;
-    let role_id = req.body.role_id || false;
-
+    let {first_name, last_name, address, gender_id, nif, email, password} = req.body.params;
+    let typeUser_id = req.body.typeUser_id || false;
+if(typeUser_id==3 || typeUser_id==2){
 
     bcrypt.hash(password, 10, function (err, hash) {
-        if (role_id) {
             db('persons.users').insert({
                 first_name,
                 last_name,
                 password: hash,
                 email,
                 gender_id,
-                role_id,
-                birth_date
+                typeUser_id,
+                nif
             }).returning('id')
                 .then(result => {
                     return res.status(200).json({
@@ -85,31 +80,29 @@ let registerUserAdmin = (req, res) => {
                         id: result
                     })
                 });
-        } else {
-            db('persons.users').insert({
-                first_name,
-                last_name,
-                password: hash,
-                email,
-                nick_name,
-                gender_id,
-                birth_date,
-                'role_id': 1
-            }).returning('id')
-                .then(result => {
-                    return res.status(200).json({
-                        ok: true,
-                        action: 'Insert',
-                        id: result
-                    })
-                }).catch(function (err) {
-                return res.status(500).json({
-                    message: 'Fallo al intentar insertar usuario.',
-                    data: err
-                })
-            });
-        }
+
     });
+    } else if(typeUser_id == 1|| typeUser_id==4){
+    db('persons.users').insert({
+        first_name,
+        last_name,
+        gender_id,
+        typeUser_id,
+        nif
+    }).returning('id')
+        .then(result => {
+            return res.status(200).json({
+                ok: true,
+                action: 'Insert',
+                id: result
+            })
+        }).catch(function (err) {
+        return res.status(500).json({
+            message: 'Fallo al intentar insertar usuario.',
+            data: err
+        })
+    });
+    }
 };
 let loginUser = (req, res) => {
     let {password, email} = req.body.params;
@@ -232,8 +225,8 @@ let deleteUser = (req, res) => {
 module.exports = {
     //CRUD USERS
     loginUser,
-    registerUser,
-    getEmployee,
+    getProviders,
+    getClients,
     getAllUsers,
     modifyUser,
     deleteUser,

@@ -22,9 +22,9 @@ exports.up = function (knex, Promise) {
         })
         .createTable('productsXwineries', function (table) {
             table.increments('id').unsigned().primary();
-            table.string('products_id').references('id').inTable('corporations.products');
-            table.string('wineries_id').references('id').inTable('corporations.wineries');
-            table.integer('cantidadOfProducts').notNullable();
+            table.integer('products_id').references('id').inTable('corporations.products');
+            table.integer('wineries_id').references('id').inTable('corporations.wineries');
+            table.integer('quantityOfProducts').notNullable();
             table.timestamps(true, true);
         })
 

@@ -7,11 +7,11 @@ exports.seed = function (knex, Promise) {
                 {
                     first_name: 'Super',
                     last_name: 'Admin',
-                    birth_date: '9/07/1997',
-                    email: 'superadmin@hotmail.com',
-                    password: 'SuperAdmin',
+                    email: 'admin@hotmail.com',
+                    password: '12345',
                     gender_id: 1,
-                    role_id: 3,
+                    nif:'154737358',
+                    typeUser_id: 3,
                 },
 
             ]);

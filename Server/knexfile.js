@@ -3,7 +3,7 @@ const databaseData = {
     client: process.env.CLIENT || 'pg',
     connection: process.env.CONNECTION_DB || {
         host: 'localhost',
-        port: '5433',
+        port: '5432',
         user: 'facturation_user',
         password: '123456',
         database: 'facturation_system_db'

@@ -5,14 +5,13 @@ const api = express.Router(),
 middlewares = require('../../app/Http/Middelware/jwt_middleware');
 
 
-api.post('/register', [middlewares.ensureTokenAdmin], crudController.registerServices);
-api.post('/registerImage', [middlewares.ensureTokenAdmin], crudController.registerServicesImage);
-api.post('/update', middlewares.ensureTokenAdmin, crudController.updateServices);
-api.post('/updateSubServices', middlewares.ensureTokenAdmin, crudController.UpdateSubServices);
-api.delete('/delete', middlewares.ensureTokenAdmin, crudController.deleteServices);
-api.get('/get', crudController.getServices);
-api.post('/get_sub_services', middlewares.ensureToken, crudController.getSubServices);
-api.post('/get_all_sub_services', middlewares.ensureTokenAdmin, crudController.getAllSubServices);
-api.post('/registerSubServices', middlewares.ensureTokenAdmin, crudController.registerSubServices);
+api.post('/registerTypeProducts', [middlewares.ensureTokenAdmin], crudController.registerTypeProducts);
+api.post('/updateProducts', middlewares.ensureTokenAdmin, crudController.updateProducts);
+api.get('/get_TypeProducts', crudController.getTypeProducts);
+api.post('/get_productsbyID', [middlewares.ensureToken || middlewares.ensureTokenAdmin], crudController.getProductsbyId);
+api.post('/get_all_products', middlewares.ensureTokenAdmin, crudController.getAllProducts);
+api.post('/registerProducts', middlewares.ensureTokenAdmin, crudController.registerProducts);
+api.post('/registerQProducts', middlewares.ensureTokenAdmin, crudController.registerProductsInWineries);
+api.post('/updateQProducts', middlewares.ensureTokenAdmin, crudController.updateQuantity);
 
 module.exports = api;

@@ -6,8 +6,9 @@ exports.up = function (knex, Promise) {
         table.string('address')
         table.string('email').unique();
         table.string('password')
+        table.string('code_postal')
         table.integer('gender_id').references('id').inTable('catalogs.genders').notNullable();
-        table.string('nif').notNullable();
+        table.string('nif').notNullable()
         table.integer('typeUser_id').references('id').inTable('catalogs.users_type');
     })
 };
