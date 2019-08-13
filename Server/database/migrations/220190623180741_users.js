@@ -3,13 +3,12 @@ exports.up = function (knex, Promise) {
         table.increments('id').unsigned().primary();
         table.string('first_name').notNullable();
         table.string('last_name').notNullable();
-        table.string('birth_date').notNullable();
+        table.string('address')
         table.string('email').unique();
-        table.string('password').notNullable();
+        table.string('password')
         table.integer('gender_id').references('id').inTable('catalogs.genders').notNullable();
-        table.string('nick_name');
-        table.string('card');
-        table.integer('role_id').references('id').inTable('catalogs.roles');
+        table.string('nif').notNullable();
+        table.integer('typeUser_id').references('id').inTable('catalogs.users_type');
     })
 };
 

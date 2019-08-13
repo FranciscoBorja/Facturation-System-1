@@ -18,26 +18,26 @@ npm run nodemon
 ```
 ### Create role
 ```bash
-CREATE USER trihard_user PASSWORD '123456';
-ALTER ROLE trihard_user WITH SUPERUSER;
-ALTER ROLE trihard_user WITH LOGIN;
+CREATE USER facturation_user PASSWORD '123456';
+ALTER ROLE facturation_user WITH SUPERUSER;
+ALTER ROLE facturation_user WITH LOGIN;
 ```
 ### Create Database 
 ```bash
-CREATE DATABASE "trihard_reservations_db"
+CREATE DATABASE "facturation_system_db"
     WITH 
-    OWNER = trihard_user
+    OWNER = facturation_user
     ENCODING = 'UTF8'
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 ```
 ### Create Schemas
 ```
-   CREATE SCHEMA IF NOT EXISTS access AUTHORIZATION trihard_user;
-   CREATE SCHEMA IF NOT EXISTS corporations AUTHORIZATION trihard_user;
-   CREATE SCHEMA IF NOT EXISTS persons AUTHORIZATION trihard_user;
-   CREATE SCHEMA IF NOT EXISTS processes AUTHORIZATION trihard_user;
-   CREATE SCHEMA IF NOT EXISTS catalogs AUTHORIZATION trihard_user;
+   CREATE SCHEMA IF NOT EXISTS access AUTHORIZATION facturation_user;
+   CREATE SCHEMA IF NOT EXISTS corporations AUTHORIZATION facturation_user;
+   CREATE SCHEMA IF NOT EXISTS persons AUTHORIZATION facturation_user;
+   CREATE SCHEMA IF NOT EXISTS processes AUTHORIZATION facturation_user;
+   CREATE SCHEMA IF NOT EXISTS catalogs AUTHORIZATION facturation_user;
 ```
 ### Migrate the tables
 ```
@@ -50,8 +50,7 @@ CREATE DATABASE "trihard_reservations_db"
 knex seed:run
 ```
 
-### To do tests in postman
-url = localhost:8000/users
+### 
 
 
 

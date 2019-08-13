@@ -4,9 +4,9 @@ const databaseData = {
     connection: process.env.CONNECTION_DB || {
         host: 'localhost',
         port: '5433',
-        user: 'trihard_user',
+        user: 'facturation_user',
         password: '123456',
-        database: 'trihard_reservations_db'
+        database: 'facturation_system_db'
     }
 };
 

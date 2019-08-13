@@ -5,9 +5,14 @@ exports.up = function (knex, Promise) {
             table.string('description').notNullable();
             table.timestamps(true, true);
         })
-        .createTable('roles', function (table) {
+        .createTable('users_type', function (table) {
             table.increments('id').primary();
             table.string('name', 10).notNullable();
+            table.string('description').notNullable();
+            table.timestamps(true, true);
+        }).createTable('type_of_sell', function (table) {
+            table.increments('id').primary();
+            table.string('name').notNullable();
             table.string('description').notNullable();
             table.timestamps(true, true);
         })
