@@ -14,7 +14,7 @@ let db = require('knex')(config['development']);
         let {user_id,typeOfSell_id} = req.body.params
         db('processes.sales_notes').insert({user_id,
             typeOfSell_id,
-            state: 'Activa'}).then(result => {
+            state: 'dont pay'}).returning('id').then(result => {
                 return res.status(200).json({
                     ok:true,
                     action:'Insert',
@@ -51,9 +51,15 @@ let getSalesNotesbyTypeSell = (req,res) =>{
 let getDetailSaleNotebyIDSaleNote = (req,res) =>{
         let {sales_notes_id} = req.body.params
     db('processes.productsXsales_notes').select('processes.productsXsales_notes.id','processes.productsXsales_notes.quantityXproduct','processes.productsXsales_notes.totalPay','corporations.products.name','corporations.products.price_sell','corporations.products.price_buy').innerJoin('corporations.products','processes.productsXsales_notes.products_id','corporations.products.id')
+        .where('processes.productsXsales_notes.sales_notes_id','=',sales_notes_id)
         .then(result =>{
-            return res.status(200)
-        })
+            return res.status(200).json({
+                ok:'okey',
+                data:result
+            })
+        }).catch(function(err){
+            return res.send(err)
+    })
 }
 let getSales_notesbyIDUser = (req,res)=>{
         let {id} = req.body.params
@@ -69,14 +75,31 @@ let getSales_notesbyIDUser = (req,res)=>{
         return res.send(err)
     })
     }
+    let registerDetailSalesNotes =(req,res)=>{
+        let {quantityXproduct,totalPay,products_id,sales_notes_id} = req.body.params
+        db('processes.productsXsales_notes').insert({
+            quantityXproduct,
+            totalPay,
+            products_id,
+            sales_notes_id
+        }).then(result =>{
+            return res.status(200).json({
+                ok:true,
+                action:'Insert',
+                data:result
+            })
+        }).catch(function(err){
+            return res.send(err)
+        })
+    }
 
 module.exports = {
     //CRUD Processes
-
     registerSalesNotes,
     updateSalesNotesById,
     getSalesNotesbyTypeSell,
     getDetailSaleNotebyIDSaleNote,
-    getSales_notesbyIDUser
+    getSales_notesbyIDUser,
+    registerDetailSalesNotes
 
 };
