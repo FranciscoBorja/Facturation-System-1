@@ -59,7 +59,7 @@ const getAllUsers = (req, res) => {
         )
 };
 let registerUserAdmin = (req, res) => {
-    let {first_name, last_name, address, gender_id, nif, email, password} = req.body.params;
+    let {first_name, last_name, address, gender_id,phone, nif, email, password} = req.body.params;
     let typeUser_id = req.body.typeUser_id || false;
 if(typeUser_id==3 || typeUser_id==2){
 
@@ -69,6 +69,7 @@ if(typeUser_id==3 || typeUser_id==2){
                 last_name,
                 password: hash,
                 email,
+                phone,
                 gender_id,
                 typeUser_id,
                 nif
@@ -88,7 +89,9 @@ if(typeUser_id==3 || typeUser_id==2){
         last_name,
         gender_id,
         typeUser_id,
-        nif
+        nif,
+        phone,
+        email
     }).returning('id')
         .then(result => {
             return res.status(200).json({
@@ -112,6 +115,7 @@ let loginUser = (req, res) => {
         'first_name',
         'last_name',
         'address',
+        'phone',
         'typeUser_id',
         'id',
         'email',
@@ -133,6 +137,7 @@ let loginUser = (req, res) => {
                                 'first_name': result[0].first_name,
                                 'last_name': result[0].last_name,
                                 'address': result[0].address,
+                                'phone': result[0].phone,
                                 'typeUser_id': result[0].typeUser_id,
                                 'email': result[0].email,
                                 'nif': result[0].nif
@@ -157,56 +162,30 @@ let loginUser = (req, res) => {
 };
 
 let modifyUser = (req, res) => {
-    let {first_name, last_name, birth_date, gender_id, nick_name, email, password, id} = req.body.params;
-    let role_id = req.body.role_id || false;
-    bcrypt.hash(password, 10, function (err, hash) {
-        if (id) {
-            if (role_id) {
-                db('persons.users')
-                    .where('id', '=', id)
-                    .update({
-                        first_name,
-                        last_name,
-                        password: hash,
-                        email,
-                        gender_id,
-                        role_id,
-                        birth_date,
-                        card
-                    }).then(function (result) {
+    let {first_name, last_name, address, gender_id,phone, nif, email, password} = req.body.params;
+    let id= req.body.id || false;
+    if(id){
+
+        bcrypt.hash(password, 10, function (err, hash) {
+            db('persons.users').update({
+                first_name,
+                last_name,
+                password: hash,
+                email,
+                phone,
+                gender_id,
+                nif
+            }).where('id','=',id).returning('id')
+                .then(result => {
                     return res.status(200).json({
                         ok: true,
                         action: 'Modify',
                         id: result
                     })
-                }).catch(function (err) {
-                    return res.send(err)
                 });
-            } else {
-                db('persons.users')
-                    .where('id', '=', id)
-                    .update({
-                        first_name,
-                        last_name,
-                        password: hash,
-                        email,
-                        nick_name,
-                        birth_date,
-                        gender_id
-                    }).then(function (result) {
-                    return res.status(200).json({
-                        ok: true,
-                        action: 'Modify',
-                        id: result
-                    })
-                }).catch(function (err) {
-                    return res.send(err)
-                });
-            }
 
-
-        }
-    });
+        });
+    }
 
 };
 

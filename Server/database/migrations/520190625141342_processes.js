@@ -16,6 +16,8 @@ exports.up = function (knex, Promise) {
         })
         .createTable('productsXsales_notes', function (table) {
             table.increments('id').unsigned().primary();
+            table.integer('quantityXproduct')
+            table.integer('totalPay')
             table.integer('products_id').references('id').inTable(('corporations.products'));
             table.integer('sales_notes_id').references('id').inTable(('processes.sales_notes'));
             table.timestamps(true, true);

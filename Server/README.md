@@ -1,4 +1,4 @@
-# TriHard-Reservations Server
+# Facturation System Server
 
 Installation
 ```bash

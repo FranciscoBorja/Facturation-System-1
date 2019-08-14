@@ -22,8 +22,8 @@ let registerTypeProducts = (req, res) => {
 
 
 let registerProducts = (req, res) => {
-    let {name, duration, price_sell, price_buy,type_products_id} = req.body.params;
-    db('corporations.products').insert({name, duration, price_sell, price_buy,type_products_id}).returning('id')
+    let {name, price_sell, price_buy,type_products_id} = req.body.params;
+    db('corporations.products').insert({name, price_sell, price_buy,type_products_id}).returning('id')
         .then(result => {
             return res.status(200).json({
                 ok: true,
@@ -33,10 +33,10 @@ let registerProducts = (req, res) => {
         });
 };
 let updateProducts = (req, res) => {
-    let {name, duration, price_sell, price_buy,type_products_id,id} = req.body.params;
+    let {name,  price_sell, price_buy,type_products_id,id} = req.body.params;
 
 
-    db('corporations.products').update({name, duration, price_sell, price_buy,type_products_id}).where('id', '=', id)
+    db('corporations.products').update({name,  price_sell, price_buy,type_products_id}).where('id', '=', id)
         .then(result => {
             return res.status(200).json({
                 ok: true,

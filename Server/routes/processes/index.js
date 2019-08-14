@@ -4,7 +4,7 @@ let api = express.Router(),
     contador = 0,
     repetidas = 'Rutas repetidas: \n';
 let rutas = [
-    reservations_routes = require('./reservations_routes'),
+    processes_routes = require('./processes_routes'),
 ];
 
 api = rutas[0];

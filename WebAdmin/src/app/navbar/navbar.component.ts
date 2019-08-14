@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
 
             },
             {
-              items: [{label: 'View reservations', routerLink: ['services/getReservations']}]
+              items: [{label: 'View processes', routerLink: ['services/getReservations']}]
 
             }
           ]
@@ -90,7 +90,7 @@ export class NavbarComponent implements OnInit {
 
             },
             {
-              items: [{label: 'View reservations', routerLink: ['services/getReservations']}]
+              items: [{label: 'View processes', routerLink: ['services/getReservations']}]
 
             }
 
